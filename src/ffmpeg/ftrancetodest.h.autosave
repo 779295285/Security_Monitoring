@@ -1,0 +1,35 @@
+#ifndef FTRANCETODEST_H
+#define FTRANCETODEST_H
+#include <QDebug>
+#include <QString>
+#include <QDateTime>
+#include "controller/setcontrol.h"
+extern "C"
+{
+    #include "libavcodec/avcodec.h"       //编解码
+    #include "libavdevice/avdevice.h"     //转码
+    #include "libavfilter/avfilter.h"
+    #include "libavformat/avformat.h"     //格式
+    #include "libavutil/avutil.h"         //工具
+    #include "libswresample/swresample.h"
+    #include "libswscale/swscale.h"       //转置
+}
+
+class FTranceToDest
+{
+public:
+    FTranceToDest(QString path);
+    void openH264File(QString file);
+    void coverTomp4();
+    QString getTime();
+
+private:
+    AVFormatContext *pFormatContext,*outFormatContext;//输出的封装格式上下文结构体
+    AVCodecContext *codecContenct;
+    AVPacket *pkt;
+    AVOutputFormat *outformat;
+    int videoIndex,frameCount;
+    AVStream *newStream;
+};
+
+#endif // FTRANCETODEST_H

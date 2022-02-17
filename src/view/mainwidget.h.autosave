@@ -1,0 +1,45 @@
+#ifndef MAINWIDGET_H
+#define MAINWIDGET_H
+
+#include <QWidget>
+#include <QLabel>
+#include <QPushButton>
+#include <QLineEdit>
+#include <QListWidget>
+#include <QListWidgetItem>
+#include <QHBoxLayout>
+#include <QVBoxLayout>
+#include <QIcon>
+#include <QPaintEvent>
+#include<QDebug>
+#include<QList>
+#include<QComboBox>
+#include<QImage>
+#include<QPixmap>
+#include<QStackedWidget>
+#include<QTimer>
+#include <QDateTime>
+class MainWidget : public QWidget
+{
+    Q_OBJECT
+public:
+    explicit MainWidget(QWidget *parent = nullptr);
+    MainWidget();
+    void init_UI();
+    void init_control();
+
+private:
+    QWidget *topWidget;
+    QStackedWidget *bottomWidget;
+    QLabel *time,*logo;
+    QHBoxLayout *totalLayout,*topLayout;
+    QPushButton *play_btn,*replay_btn,*log_btn,*setting_btn;
+    QTimer *timer;
+
+signals:
+
+public slots:
+    void qtimeSlot();
+};
+
+#endif // MAINWIDGET_H
